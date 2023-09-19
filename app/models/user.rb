@@ -28,6 +28,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :username, presence: true, uniqueness: true
+  
   has_many :comments, foreign_key: "author_id"
 
   has_many :sent_follow_requests, foreign_key: :sender_id, class_name: "FollowRequest"
